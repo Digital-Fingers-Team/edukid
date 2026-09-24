@@ -3,7 +3,8 @@ import cookie from '@fastify/cookie';
 import rateLimit from '@fastify/rate-limit';
 import multipart from '@fastify/multipart';
 import type { Db } from './db.ts';
-import { authRoutes } from './auth.ts';
+import { authRoutes, requireParent } from './auth.ts';
+import { childrenRoutes } from './children.ts';
 
 export interface AppOptions { db: Db; dataDir: string; cookieSecure: boolean; logger?: boolean }
 
@@ -15,5 +16,9 @@ export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
   app.decorateRequest('parentId', '');
   app.get('/api/health', async () => ({ ok: true }));
   await app.register(authRoutes, o);
+  await app.register(async (scoped) => {
+    scoped.addHook('preHandler', requireParent(o.db));
+    await scoped.register(childrenRoutes, o);
+  });
   return app;
 }
