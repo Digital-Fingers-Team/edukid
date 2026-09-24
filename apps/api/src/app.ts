@@ -6,6 +6,8 @@ import type { Db } from './db.ts';
 import { authRoutes, requireParent } from './auth.ts';
 import { childrenRoutes } from './children.ts';
 import { progressRoutes } from './progress.ts';
+import { recordingRoutes } from './recordings.ts';
+import { accountRoutes } from './account.ts';
 
 export interface AppOptions { db: Db; dataDir: string; cookieSecure: boolean; logger?: boolean }
 
@@ -21,6 +23,8 @@ export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
     scoped.addHook('preHandler', requireParent(o.db));
     await scoped.register(childrenRoutes, o);
     await scoped.register(progressRoutes, o);
+    await scoped.register(recordingRoutes, o);
+    await scoped.register(accountRoutes, o);
   });
   return app;
 }
