@@ -2,6 +2,9 @@ import type { ReactNode } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { AuthProvider, useAuth } from './auth/AuthProvider';
 import { Welcome } from './pages/Welcome';
+import { Children } from './pages/Children';
+import { ChildLayout } from './pages/ChildLayout';
+import { ChildHome } from './pages/ChildHome';
 
 export function RequireParent({ children }: { children: ReactNode }) {
   const { state } = useAuth();
@@ -16,7 +19,11 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="*" element={<RequireParent><Navigate to="/children" replace /></RequireParent>} />
+          <Route path="/children" element={<RequireParent><Children /></RequireParent>} />
+          <Route path="/child/:childId" element={<RequireParent><ChildLayout /></RequireParent>}>
+            <Route index element={<ChildHome />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
