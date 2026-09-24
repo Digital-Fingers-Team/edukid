@@ -10,5 +10,8 @@ import './styles/base.css';
 import './styles/kid.css';
 import './styles/parent.css';
 import { App } from './App';
+import { startBackgroundSync } from './store/sync';
+
+startBackgroundSync();
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>);
