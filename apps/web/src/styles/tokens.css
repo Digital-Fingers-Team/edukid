@@ -48,3 +48,7 @@
     color-scheme: dark;
   }
 }
+
+/* Chart mark colour, validated with the dataviz palette validator (light + dark). */
+:root { --chart: #3A8A57; }
+@media (prefers-color-scheme: dark) { :root { --chart: #4FA06C; } }
