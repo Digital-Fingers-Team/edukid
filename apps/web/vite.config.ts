@@ -5,5 +5,5 @@ export default defineConfig({
   plugins: [react()],
   server: { port: 5173, proxy: { '/api': 'http://127.0.0.1:4410' } },
   preview: { port: 4173, proxy: { '/api': 'http://127.0.0.1:4410' } },
-  test: { environment: 'jsdom', globals: true, setupFiles: ['src/test-setup.ts'] },
+  test: { environment: 'jsdom', globals: true, setupFiles: ['src/test-setup.ts'], testTimeout: 20_000 },
 });
