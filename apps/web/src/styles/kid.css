@@ -61,3 +61,21 @@
 .avatar-pick button { border: 2px solid var(--line); border-radius: 50%; padding: 6px; background: var(--card); cursor: pointer; }
 .avatar-pick button[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
 fieldset.field { border: 0; padding: 0; margin: 0 0 1rem; }
+
+.reward { display: grid; justify-items: center; gap: 18px; text-align: center; padding: 16px 0; }
+.reward-title { font: 700 1.4rem/1.4 var(--font-kid); }
+.reward-choices { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.sticker-choice {
+  width: 112px; height: 112px; display: grid; place-items: center; cursor: pointer;
+  background: var(--card); border: 2.5px solid var(--ink); border-radius: 50%; box-shadow: 0 4px 0 var(--ink);
+  animation: float-in .6s var(--ease) both;
+}
+.sticker-choice:nth-child(2) { animation-delay: .12s; }
+.sticker-choice:nth-child(3) { animation-delay: .24s; }
+.sticker-won { animation: pop .7s var(--ease) both; }
+@keyframes float-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(.4) rotate(-8deg); } 70% { transform: scale(1.06) rotate(2deg); } 100% { transform: scale(1); } }
+.book-count { text-align: center; font: 700 1.2rem var(--font-kid); color: var(--ink-2); }
+.sticker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.sticker-slot { aspect-ratio: 1; display: grid; place-items: center; border: 2.5px dashed var(--line); border-radius: 50%; }
+.sticker-slot.got { border: 2.5px solid var(--ink); background: var(--sun-soft); }

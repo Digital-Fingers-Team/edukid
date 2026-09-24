@@ -5,6 +5,7 @@ import { Welcome } from './pages/Welcome';
 import { Children } from './pages/Children';
 import { ChildLayout } from './pages/ChildLayout';
 import { ChildHome } from './pages/ChildHome';
+import { StickerBook } from './pages/StickerBook';
 
 export function RequireParent({ children }: { children: ReactNode }) {
   const { state } = useAuth();
@@ -22,6 +23,7 @@ export function App() {
           <Route path="/children" element={<RequireParent><Children /></RequireParent>} />
           <Route path="/child/:childId" element={<RequireParent><ChildLayout /></RequireParent>}>
             <Route index element={<ChildHome />} />
+            <Route path="stickers" element={<StickerBook />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
