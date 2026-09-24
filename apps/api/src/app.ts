@@ -5,6 +5,7 @@ import multipart from '@fastify/multipart';
 import type { Db } from './db.ts';
 import { authRoutes, requireParent } from './auth.ts';
 import { childrenRoutes } from './children.ts';
+import { progressRoutes } from './progress.ts';
 
 export interface AppOptions { db: Db; dataDir: string; cookieSecure: boolean; logger?: boolean }
 
@@ -19,6 +20,7 @@ export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
   await app.register(async (scoped) => {
     scoped.addHook('preHandler', requireParent(o.db));
     await scoped.register(childrenRoutes, o);
+    await scoped.register(progressRoutes, o);
   });
   return app;
 }
