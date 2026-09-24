@@ -1,0 +1,15 @@
+[
+  {"letter":"A","word":"apple","art":"1F34E"},{"letter":"B","word":"ball","art":"26BD"},
+  {"letter":"C","word":"cat","art":"1F408"},{"letter":"D","word":"dog","art":"1F415"},
+  {"letter":"E","word":"egg","art":"1F95A"},{"letter":"F","word":"fish","art":"1F41F"},
+  {"letter":"G","word":"grapes","art":"1F347"},{"letter":"H","word":"hat","art":"1F3A9"},
+  {"letter":"I","word":"ice cream","art":"1F366"},{"letter":"J","word":"juice","art":"1F9C3"},
+  {"letter":"K","word":"kite","art":"1FA81"},{"letter":"L","word":"lion","art":"1F981"},
+  {"letter":"M","word":"moon","art":"1F319"},{"letter":"N","word":"nest","art":"1FAB9"},
+  {"letter":"O","word":"orange","art":"1F34A"},{"letter":"P","word":"pig","art":"1F416"},
+  {"letter":"Q","word":"queen","art":"1F478"},{"letter":"R","word":"rabbit","art":"1F407"},
+  {"letter":"S","word":"sun","art":"2600"},{"letter":"T","word":"tree","art":"1F333"},
+  {"letter":"U","word":"umbrella","art":"2602"},{"letter":"V","word":"violin","art":"1F3BB"},
+  {"letter":"W","word":"whale","art":"1F40B"},{"letter":"X","word":"fox","art":"1F98A"},
+  {"letter":"Y","word":"yo-yo","art":"1FA80"},{"letter":"Z","word":"zebra","art":"1F993"}
+]

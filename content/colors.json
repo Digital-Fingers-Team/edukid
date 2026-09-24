@@ -1,0 +1,10 @@
+[
+  {"id":"red","ar":"أحمر","en":"red","hex":"#D2543F"},
+  {"id":"blue","ar":"أزرق","en":"blue","hex":"#3F7CC4"},
+  {"id":"yellow","ar":"أصفر","en":"yellow","hex":"#EDC24A"},
+  {"id":"green","ar":"أخضر","en":"green","hex":"#5E9E5B"},
+  {"id":"orange","ar":"برتقالي","en":"orange","hex":"#E88A3A"},
+  {"id":"purple","ar":"بنفسجي","en":"purple","hex":"#8A62B8"},
+  {"id":"pink","ar":"بمبي","en":"pink","hex":"#E68FAE"},
+  {"id":"brown","ar":"بني","en":"brown","hex":"#8B5E3C"}
+]
