@@ -10,6 +10,7 @@ import './styles/base.css';
 import './styles/kid.css';
 import './styles/parent.css';
 import './styles/games.css';
+import './styles/session.css';
 import { App } from './App';
 import { startBackgroundSync } from './store/sync';
 
