@@ -10,6 +10,8 @@ import { VoiceGame, VoiceGames } from './pages/VoiceGames';
 import { SessionPage } from './session/SessionPage';
 import { RatePage } from './pages/RatePage';
 import { ProgressPage } from './pages/ProgressPage';
+import { LearnMenu } from './learn/LearnMenu';
+import { LearnRound } from './learn/LearnRound';
 
 export function RequireParent({ children }: { children: ReactNode }) {
   const { state } = useAuth();
@@ -30,6 +32,9 @@ export function App() {
             <Route path="session" element={<SessionPage />} />
             <Route path="rate" element={<RatePage />} />
             <Route path="progress" element={<ProgressPage />} />
+            <Route path="learn" element={<LearnMenu />} />
+            <Route path="learn/:subject" element={<LearnMenu />} />
+            <Route path="learn/:subject/:game" element={<LearnRound />} />
             <Route path="stickers" element={<StickerBook />} />
             <Route path="voice" element={<VoiceGames />} />
             <Route path="voice/:game" element={<VoiceGame />} />
