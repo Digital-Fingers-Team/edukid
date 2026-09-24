@@ -12,6 +12,12 @@ import { RatePage } from './pages/RatePage';
 import { ProgressPage } from './pages/ProgressPage';
 import { LearnMenu } from './learn/LearnMenu';
 import { LearnRound } from './learn/LearnRound';
+import { Guide } from './pages/Guide';
+import { Library } from './pages/Library';
+import { Stories } from './pages/Stories';
+import { ChildSettings } from './pages/ChildSettings';
+import { Recordings } from './pages/Recordings';
+import { Account } from './pages/Account';
 
 export function RequireParent({ children }: { children: ReactNode }) {
   const { state } = useAuth();
@@ -27,17 +33,24 @@ export function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/children" element={<RequireParent><Children /></RequireParent>} />
+          <Route path="/guide" element={<RequireParent><Guide /></RequireParent>} />
+          <Route path="/account" element={<RequireParent><Account /></RequireParent>} />
           <Route path="/child/:childId" element={<RequireParent><ChildLayout /></RequireParent>}>
             <Route index element={<ChildHome />} />
             <Route path="session" element={<SessionPage />} />
             <Route path="rate" element={<RatePage />} />
             <Route path="progress" element={<ProgressPage />} />
+            <Route path="voice" element={<VoiceGames />} />
+            <Route path="voice/:game" element={<VoiceGame />} />
             <Route path="learn" element={<LearnMenu />} />
             <Route path="learn/:subject" element={<LearnMenu />} />
             <Route path="learn/:subject/:game" element={<LearnRound />} />
+            <Route path="stories" element={<Stories />} />
+            <Route path="stories/:storyId" element={<Stories />} />
             <Route path="stickers" element={<StickerBook />} />
-            <Route path="voice" element={<VoiceGames />} />
-            <Route path="voice/:game" element={<VoiceGame />} />
+            <Route path="library" element={<Library />} />
+            <Route path="settings" element={<ChildSettings />} />
+            <Route path="recordings" element={<Recordings />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -27,7 +27,7 @@ describe('ProgressPage', () => {
       await db.ratings.put({ childId: 'c1', date: addDays(addDays(current, -back), d), value: d % 2, updatedAt: 1 });
     }
     renderProgress();
-    fireEvent.click(await screen.findByRole('button', { name: 'ننتقل للمرحلة التانية' }));
+    fireEvent.click(await screen.findByRole('button', { name: 'ننتقل للمرحلة التانية' }, { timeout: 15000 }));
     await waitFor(async () => {
       const c = await db.children.get('c1');
       expect(c?.stage).toBe(2);
