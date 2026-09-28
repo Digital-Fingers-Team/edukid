@@ -1,0 +1,39 @@
+{
+  "books": [
+    {
+      "id": "ar-kg1",
+      "title": "كتاب العربي — KG1",
+      "file": "/books/Arabic_KG1.pdf",
+      "art": "1F4D6"
+    },
+    {
+      "id": "en-kg1",
+      "title": "English — KG1",
+      "file": "/books/English_KG1.pdf",
+      "art": "1F4D6"
+    },
+    {
+      "id": "en-kg2",
+      "title": "English — KG2",
+      "file": "/books/English_KG2.pdf",
+      "art": "1F4D6"
+    }
+  ],
+  "videos": [
+    {
+      "id": "ar-alphabet",
+      "title": "أنشودة الحروف العربية",
+      "youtubeId": "hrHv48j97Ag"
+    },
+    {
+      "id": "abc",
+      "title": "ABC Song",
+      "youtubeId": "vD98OvvDNEs"
+    },
+    {
+      "id": "rabbit-fox",
+      "title": "الأرنب والثعلب — طيور بيبي",
+      "youtubeId": "8NR5C9qWMDs"
+    }
+  ]
+}

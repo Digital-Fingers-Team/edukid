@@ -1,0 +1,16 @@
+[
+  {"word":"cat","art":"1F408","kg":1},{"word":"dog","art":"1F415","kg":1},{"word":"fish","art":"1F41F","kg":1},
+  {"word":"bird","art":"1F426","kg":1},{"word":"cow","art":"1F404","kg":1},{"word":"duck","art":"1F986","kg":1},
+  {"word":"apple","art":"1F34E","kg":1},{"word":"banana","art":"1F34C","kg":1},{"word":"milk","art":"1F95B","kg":1},
+  {"word":"egg","art":"1F95A","kg":1},{"word":"cake","art":"1F370","kg":1},{"word":"bread","art":"1F35E","kg":1},
+  {"word":"mom","art":"1F469","kg":1},{"word":"dad","art":"1F468","kg":1},{"word":"baby","art":"1F476","kg":1},
+  {"word":"house","art":"1F3E0","kg":1},{"word":"car","art":"1F697","kg":1},{"word":"ball","art":"26BD","kg":1},
+  {"word":"sun","art":"2600","kg":1},{"word":"moon","art":"1F319","kg":1},{"word":"star","art":"2B50","kg":1},
+  {"word":"tree","art":"1F333","kg":1},{"word":"flower","art":"1F33C","kg":1},{"word":"book","art":"1F4D6","kg":1},
+  {"word":"horse","art":"1F40E","kg":2},{"word":"lion","art":"1F981","kg":2},{"word":"monkey","art":"1F412","kg":2},
+  {"word":"bee","art":"1F41D","kg":2},{"word":"bus","art":"1F68C","kg":2},{"word":"train","art":"1F686","kg":2},
+  {"word":"boat","art":"26F5","kg":2},{"word":"bed","art":"1F6CF","kg":2},{"word":"chair","art":"1FA91","kg":2},
+  {"word":"rain","art":"1F327","kg":2},{"word":"hand","art":"270B","kg":2},{"word":"eye","art":"1F441","kg":2},
+  {"word":"shoe","art":"1F45F","kg":2},{"word":"hat","art":"1F3A9","kg":2},{"word":"kite","art":"1FA81","kg":2},
+  {"word":"juice","art":"1F9C3","kg":2}
+]
