@@ -8,8 +8,13 @@ import { childrenRoutes } from './children.ts';
 import { progressRoutes } from './progress.ts';
 import { recordingRoutes } from './recordings.ts';
 import { accountRoutes } from './account.ts';
+import { webRoutes } from './web.ts';
 
-export interface AppOptions { db: Db; dataDir: string; cookieSecure: boolean; logger?: boolean }
+export interface AppOptions {
+  db: Db; dataDir: string; cookieSecure: boolean; logger?: boolean;
+  /** Built web app to serve (production). */ webDir?: string;
+  /** Book PDFs served at /books/. */ booksDir?: string;
+}
 
 export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
   const app = Fastify({ logger: o.logger ?? false, bodyLimit: 1_000_000, trustProxy: true });
@@ -26,5 +31,6 @@ export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
     await scoped.register(recordingRoutes, o);
     await scoped.register(accountRoutes, o);
   });
+  await app.register(webRoutes, { webDir: o.webDir, booksDir: o.booksDir });
   return app;
 }
