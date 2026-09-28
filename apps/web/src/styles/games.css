@@ -1,0 +1,50 @@
+.game-intro { display: grid; gap: 16px; justify-items: center; text-align: center; padding-top: 24px; }
+.parent-note { font-family: var(--font-ui); font-size: .95rem; max-width: 32ch; }
+.board { display: grid; gap: 16px; justify-items: center; }
+.board-hint { font: 600 1.15rem/1.5 var(--font-kid); text-align: center; min-height: 3em; margin: 0; }
+.word-card {
+  display: grid; justify-items: center; gap: 6px; padding: 16px 28px;
+  background: var(--card); border: 2.5px solid var(--ink); border-radius: var(--radius-lg); box-shadow: 0 4px 0 var(--ink);
+  font: 800 2.2rem/1.2 var(--font-kid);
+}
+.stretch { color: var(--clay); letter-spacing: .05em; }
+
+.track {
+  position: relative; width: 100%; height: 130px; border-radius: var(--radius-lg);
+  background: var(--sage-soft); border: 2.5px solid var(--ink); overflow: hidden;
+}
+.track::after { content: ''; position: absolute; inset-inline: 16px; bottom: 22px; border-bottom: 4px dashed var(--sage); }
+.track-runner { position: absolute; bottom: 10px; transition: inset-inline-start .1s linear; }
+.track-goal { position: absolute; inset-inline-end: 12px; bottom: 26px; }
+
+.balloon-stage { width: 180px; height: 300px; }
+.balloon-stage.fly { animation: fly-away 1.6s var(--ease) forwards; }
+.balloon.wobble { animation: wobble .3s ease-in-out 2; transform-origin: 50% 90%; }
+@keyframes wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-7deg); } 75% { transform: rotate(7deg); } }
+@keyframes fly-away { to { transform: translateY(-40px) rotate(4deg); opacity: .85; } }
+
+.snake-stage { width: 100%; padding: 12px 0; }
+
+.bubble-stage {
+  position: relative; width: 100%; height: 320px; overflow: hidden; border-radius: var(--radius-lg);
+  background: var(--sky-soft); border: 2.5px solid var(--ink);
+}
+.bubble {
+  position: absolute; bottom: -60px; border-radius: 50%;
+  border: 2.5px solid var(--sky); background: radial-gradient(circle at 30% 30%, #fff 0 12%, transparent 13%), color-mix(in srgb, var(--card) 55%, transparent);
+  animation: rise 3.2s var(--ease) forwards;
+}
+@keyframes rise { to { transform: translateY(-400px); opacity: .2; } }
+
+.dots { display: flex; gap: 8px; }
+.dots span { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ink); }
+.dots span.done { background: var(--ink); }
+.dots span.now { background: var(--sun); }
+
+.fallback { display: grid; gap: 10px; justify-items: center; text-align: center; margin-top: 18px; }
+.hold-btn {
+  min-width: 220px; min-height: 72px; font: 700 1.2rem var(--font-kid); color: var(--ink);
+  background: var(--sun-soft); border: 2.5px solid var(--ink); border-radius: 999px; box-shadow: 0 4px 0 var(--ink);
+  user-select: none; -webkit-user-select: none; touch-action: none; cursor: pointer;
+}
+.hold-btn.held { transform: translateY(4px); box-shadow: none; background: var(--sun); }

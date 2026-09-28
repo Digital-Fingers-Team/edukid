@@ -9,6 +9,7 @@ import './styles/tokens.css';
 import './styles/base.css';
 import './styles/kid.css';
 import './styles/parent.css';
+import './styles/games.css';
 import { App } from './App';
 import { startBackgroundSync } from './store/sync';
 
