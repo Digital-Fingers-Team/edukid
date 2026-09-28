@@ -23,13 +23,14 @@ describe('repo', () => {
     expect(q).toMatchObject([{ method: 'PUT', path: '/api/children/c1/ratings/2026-09-24', body: { value: 3 } }]);
   });
 
-  it('updateChild queues the full editable state so coalesced PATCHes lose nothing', async () => {
+  it('updateChild sends only what changed, merging queued changes', async () => {
     offline();
     await updateChild('c1', { stage: 2, stageSince: '2026-10-10' });
     await updateChild('c1', { level: 3 });
     const q = await db.outbox.toArray();
     expect(q).toHaveLength(1);
-    expect(q[0]!.body).toMatchObject({ stage: 2, stageSince: '2026-10-10', level: 3, name: 'نور' });
+    // Never resend untouched settings (e.g. recording consent) from a possibly stale copy.
+    expect(q[0]!.body).toEqual({ stage: 2, stageSince: '2026-10-10', level: 3 });
   });
 
   it('reviewItem moves the item through Leitner boxes and URL-encodes the id', async () => {

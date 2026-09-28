@@ -6,8 +6,12 @@ export type Sender = (method: string, path: string, body?: unknown) => Promise<u
 export async function enqueue(d: LocalDb, e: Omit<OutboxEntry, 'seq' | 'key'>): Promise<void> {
   const key = `${e.method} ${e.path}`;
   await d.transaction('rw', d.outbox, async () => {
+    const pending = await d.outbox.where('key').equals(key).first();
     await d.outbox.where('key').equals(key).delete();
-    await d.outbox.add({ ...e, key });
+    // PUTs replace (latest wins); PATCHes are partial, so queued ones merge.
+    const body = e.method === 'PATCH' && pending?.body && e.body
+      ? { ...(pending.body as object), ...(e.body as object) } : e.body;
+    await d.outbox.add({ ...e, body, key });
   });
 }
 

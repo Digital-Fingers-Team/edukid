@@ -18,7 +18,17 @@ export function Recordings() {
   const [error, setError] = useState('');
   const [secs, setSecs] = useState(0);
   const [recording, setRecording] = useState(false);
-  const rec = useRef<{ mr: MediaRecorder; started: number; timer: number } | null>(null);
+  const rec = useRef<{ mr: MediaRecorder; stream: MediaStream; started: number; timer: number; discard: boolean } | null>(null);
+
+  // Leaving the page abandons the recording: stop the mic and upload nothing.
+  useEffect(() => () => {
+    const r = rec.current;
+    if (!r) return;
+    r.discard = true;
+    window.clearInterval(r.timer);
+    if (r.mr.state !== 'inactive') r.mr.stop();
+    r.stream.getTracks().forEach((t) => t.stop());
+  }, []);
 
   const load = useCallback(
     () => api<RecordingMeta[]>('GET', base).then(setList).catch((err) => setError(authMessage(err))), [base]);
@@ -44,13 +54,16 @@ export function Recordings() {
       const chunks: Blob[] = [];
       const started = Date.now();
       mr.ondataavailable = (e) => chunks.push(e.data);
-      mr.onstop = () => void upload(new Blob(chunks, { type: mr.mimeType }), stream, started);
+      mr.onstop = () => {
+        if (rec.current?.discard) return;
+        void upload(new Blob(chunks, { type: mr.mimeType }), stream, started);
+      };
       const timer = window.setInterval(() => {
         const s = Math.round((Date.now() - started) / 1000);
         setSecs(s);
         if (s >= MAX_SEC) stop();
       }, 500);
-      rec.current = { mr, started, timer };
+      rec.current = { mr, stream, started, timer, discard: false };
       mr.start(1000);
       setRecording(true);
     } catch {

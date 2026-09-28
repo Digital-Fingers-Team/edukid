@@ -3,13 +3,16 @@ import type { Box, ItemProgress, Level, PracticeSession, Rating, Sticker, SyncPa
 import type { AppOptions } from './app.ts';
 import { childFromRow, DATE, ownChild } from './children.ts';
 
+/** A session left open overnight is stored as 2 hours rather than dropped. */
+const MAX_SESSION_SEC = 7200;
+
 const int = (min: number, max: number) => ({ type: 'integer', minimum: min, maximum: max }) as const;
 
 const sessionBody = {
   type: 'object', additionalProperties: false,
   required: ['date', 'startedAt', 'durationSec', 'levels', 'smooth', 'bumpy', 'corrections', 'note'],
   properties: {
-    date: DATE, startedAt: int(0, 9e15), durationSec: int(0, 7200),
+    date: DATE, startedAt: int(0, 9e15), durationSec: int(0, 9e9), // capped below, never rejected
     levels: { type: 'array', maxItems: 50, items: int(1, 5) },
     smooth: int(0, 100000), bumpy: int(0, 100000), corrections: int(0, 100000),
     note: { type: 'string', maxLength: 1000 },
@@ -52,7 +55,7 @@ export async function progressRoutes(app: FastifyInstance, o: AppOptions) {
         duration_sec = excluded.duration_sec, levels = excluded.levels, smooth = excluded.smooth,
         bumpy = excluded.bumpy, corrections = excluded.corrections, note = excluded.note, updated_at = excluded.updated_at
       WHERE practice_sessions.child_id = excluded.child_id`).run({
-      id: sid, child: child.id, date: b.date, started: b.startedAt, dur: b.durationSec,
+      id: sid, child: child.id, date: b.date, started: b.startedAt, dur: Math.min(b.durationSec, MAX_SESSION_SEC),
       levels: JSON.stringify(b.levels), smooth: b.smooth, bumpy: b.bumpy, corr: b.corrections, note: b.note, now: Date.now(),
     });
     if (res.changes === 0) return reply.code(409).send({ error: 'conflict' });

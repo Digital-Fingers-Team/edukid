@@ -26,6 +26,7 @@ describe('RatePage', () => {
     renderRate();
     fireEvent.click(await screen.findByRole('radio', { name: '٢' }));
     await waitFor(async () => expect((await db.ratings.get(['c1', todayKey()]))?.value).toBe(2));
+    expect(await screen.findByRole('status')).toBeTruthy();
   });
 
   it('can fill in yesterday but not other days', async () => {
@@ -33,6 +34,7 @@ describe('RatePage', () => {
     fireEvent.click(await screen.findByRole('tab', { name: 'امبارح' }));
     fireEvent.click(screen.getByRole('radio', { name: '٠' }));
     await waitFor(async () => expect((await db.ratings.get(['c1', addDays(todayKey(), -1)]))?.value).toBe(0));
+    expect(await screen.findByRole('status')).toBeTruthy();
     expect(screen.queryByRole('tab', { name: /قبل/ })).toBeNull();
   });
 });

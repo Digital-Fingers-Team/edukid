@@ -19,7 +19,8 @@
 .say p { margin: 0 0 8px; font-size: 1.05rem; }
 .say-label { font-weight: 700; color: var(--clay); }
 .dock-buttons { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
-.dock-smooth { background: var(--sage); color: #fff; min-height: 64px; font-size: 1.15rem; }
+/* 5.0:1 (light) and 7.5:1 (dark) — WCAG AA for the button parents tap most. */
+.dock-smooth { background: #467A57; color: #fff; min-height: 64px; font-size: 1.15rem; }
 .dock-bumpy { min-height: 64px; }
 .dock-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: 10px; }
 .dock-row .btn-primary { margin-inline-start: auto; min-height: 44px; }
@@ -28,4 +29,4 @@
 .session-intro ul { margin-bottom: 18px; }
 .finish { display: grid; gap: 4px; }
 .row { display: flex; gap: 10px; flex-wrap: wrap; }
-@media (prefers-color-scheme: dark) { .dock-smooth { color: var(--paper); } }
+@media (prefers-color-scheme: dark) { .dock-smooth { background: var(--sage); color: #1E1B18; } }

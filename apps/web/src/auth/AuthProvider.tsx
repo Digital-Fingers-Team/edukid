@@ -27,7 +27,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } catch (err) {
         const cached = await getMeta<Me>('me');
         if (!alive) return;
-        if (err instanceof NetworkError && cached) setState({ status: 'parent', me: cached });
+        const serverDown = err instanceof NetworkError || (err instanceof ApiError && err.status >= 500);
+        if (serverDown && cached) setState({ status: 'parent', me: cached });
         else setState({ status: 'guest' });
       }
     })();

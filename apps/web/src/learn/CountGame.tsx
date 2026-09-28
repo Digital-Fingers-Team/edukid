@@ -62,7 +62,7 @@ export function CountGame({ items, kg, onDone }: GameProps) {
           </button>
         ))}
       </div>
-      <p className="learn-hint" aria-live="polite">{wrong !== null ? 'عدّ تاني بالراحة' : right ? 'برافو!' : ' '}</p>
+      <p className="learn-hint" aria-live="polite">{wrong !== null ? 'يلا نعدّ تاني' : right ? 'برافو!' : ' '}</p>
     </div>
   );
 }

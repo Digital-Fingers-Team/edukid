@@ -17,7 +17,7 @@ export interface AppOptions {
 }
 
 export async function buildApp(o: AppOptions): Promise<FastifyInstance> {
-  const app = Fastify({ logger: o.logger ?? false, bodyLimit: 1_000_000, trustProxy: true });
+  const app = Fastify({ logger: o.logger ?? false, bodyLimit: 1_000_000, trustProxy: '127.0.0.1' /* only the local nginx; its X-Forwarded-For entry is the real client */ });
   await app.register(cookie);
   await app.register(rateLimit, { global: false });
   await app.register(multipart, { limits: { fileSize: 10 * 1024 * 1024, files: 1, fields: 4 } });

@@ -32,7 +32,7 @@ export function useTodayPlan(child: Child) {
   const ratings = useLiveQuery(() => db.ratings.where('childId').equals(child.id).toArray(), [child.id]) ?? [];
   const done = sessions.filter((s) => s.durationSec >= 60);
   const proposal =
-    child.stage === 1 && stage2Eligible(ratings, today) ? 'stage2'
+    child.stage === 1 && stage2Eligible(ratings, today, child.stageSince) ? 'stage2'
     : child.stage === 2 && shouldReturnToStage1(ratings, child.stageSince, today) ? 'stage1'
     : null;
   return {

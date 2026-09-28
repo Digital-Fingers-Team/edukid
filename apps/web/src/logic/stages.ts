@@ -17,10 +17,15 @@ export function summarizeWeek(ratings: DayRating[], start: string): WeekSummary 
   };
 }
 
-export function stage2Eligible(ratings: DayRating[], today: string): boolean {
+/** since: the child's stageSince — weeks from before the latest stage change never count. */
+export function stage2Eligible(ratings: DayRating[], today: string, since = '0000-00-00'): boolean {
   const current = weekStart(today);
+  const earliest = weekStart(since);
+  const counted = ratings.filter((r) => r.date >= since);
   return [21, 14, 7].every((back) => {
-    const w = summarizeWeek(ratings, addDays(current, -back));
+    const start = addDays(current, -back);
+    if (start < earliest) return false;
+    const w = summarizeWeek(counted, start);
     return w.rated >= 4 && w.average !== null && w.average <= 1.5 && w.lowDays >= 4;
   });
 }

@@ -46,6 +46,15 @@ describe('stage2Eligible', () => {
   });
 });
 
+describe('stage2Eligible after a return to stage 1', () => {
+  it('does not propose stage 2 again from weeks before the latest stage change', () => {
+    const good = (start: string) => week(start, [1, 0, 1, 2, 1, null, 1]);
+    const r = [...good('2026-09-19'), ...good('2026-09-26'), ...good('2026-10-03')];
+    expect(stage2Eligible(r, TODAY, '2026-10-15')).toBe(false);   // back in stage 1 since today
+    expect(stage2Eligible(r, TODAY, '2026-09-01')).toBe(true);    // in stage 1 all along
+  });
+});
+
 describe('shouldReturnToStage1', () => {
   it('suggests return when the current week averages above 2.5 over 3+ days', () => {
     const r = week('2026-10-10', [3, 3, 2, 4]);

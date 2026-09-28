@@ -9,6 +9,9 @@ import type { AppOptions } from './app.ts';
 import { ownChild } from './children.ts';
 import { childDir } from './files.ts';
 
+/** Per child: a monthly sample for two years. Also protects the shared server's disk. */
+const MAX_RECORDINGS = 24;
+
 const EXT: Record<string, string> = { 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mp4': 'm4a', 'audio/mpeg': 'mp3' };
 
 interface RecRow { id: string; child_id: string; created_at: number; duration_sec: number; mime: string; file: string }
@@ -20,11 +23,13 @@ export async function recordingRoutes(app: FastifyInstance, o: AppOptions) {
   const findRec = (childId: string, rid: string) =>
     db.prepare('SELECT * FROM recordings WHERE id = ? AND child_id = ?').get(rid, childId) as RecRow | undefined;
 
-  app.post('/api/children/:id/recordings', async (req, reply) => {
+  app.post('/api/children/:id/recordings', { config: { rateLimit: { max: 6, timeWindow: '1 minute' } } }, async (req, reply) => {
     const { id } = req.params as { id: string };
     const child = ownChild(db, req.parentId, id);
     if (!child) return reply.code(404).send({ error: 'not_found' });
     if (child.recording_consent !== 1) return reply.code(403).send({ error: 'no_consent' });
+    const { n } = db.prepare('SELECT COUNT(*) AS n FROM recordings WHERE child_id = ?').get(child.id) as { n: number };
+    if (n >= MAX_RECORDINGS) return reply.code(409).send({ error: 'too_many_recordings' });
     const data = await req.file();
     if (!data) return reply.code(400).send({ error: 'no_file' });
     const mime = data.mimetype.split(';')[0]!.trim().toLowerCase();
