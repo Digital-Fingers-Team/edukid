@@ -15,6 +15,8 @@
 }
 .track::after { content: ''; position: absolute; inset-inline: 16px; bottom: 22px; border-bottom: 4px dashed var(--sage); }
 .track-runner { position: absolute; bottom: 10px; transition: inset-inline-start .1s linear; }
+/* The turtle walks toward the lettuce at the inline end (left in RTL), so it faces left. */
+.track-runner .turtle { transform: scaleX(-1); }
 .track-goal { position: absolute; inset-inline-end: 12px; bottom: 26px; }
 
 .balloon-stage { width: 180px; height: 300px; }
@@ -36,7 +38,7 @@
 }
 @keyframes rise { to { transform: translateY(-400px); opacity: .2; } }
 
-.dots { display: flex; gap: 8px; }
+.dots { display: flex; gap: 8px; justify-content: center; width: fit-content; margin: 14px auto 0; }
 .dots span { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--ink); }
 .dots span.done { background: var(--ink); }
 .dots span.now { background: var(--sun); }

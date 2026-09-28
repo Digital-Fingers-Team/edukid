@@ -99,7 +99,7 @@ export function TalkingGame({ child, onEnd }: { child: Child; onEnd: (s: Practic
           <span className="chip">المستوى: {LEVEL_NAMES[level]}</span>
           <button className="btn btn-quiet" aria-label="مستوى أسهل" onClick={() => changeLevel(-1)} disabled={level === 1}>أسهل</button>
           <button className="btn btn-quiet" aria-label="مستوى أصعب" onClick={() => changeLevel(1)} disabled={level === 5}>أصعب</button>
-          <span className={`chip timer${elapsed >= TEN_MIN ? ' enough' : ''}`}>
+          <span className={`chip timer${elapsed >= TEN_MIN ? ' enough' : ''}`} dir="ltr" aria-label="وقت الجلسة">
             {toArabicDigits(Math.floor(elapsed / 60))}:{toArabicDigits(String(elapsed % 60).padStart(2, '0'))}
           </span>
           <button className="btn btn-primary" onClick={() => void end()}>خلصنا</button>

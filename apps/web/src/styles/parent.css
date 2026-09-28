@@ -17,16 +17,17 @@
 .segmented button[aria-selected="true"] { background: var(--card); color: var(--ink); box-shadow: 0 2px 0 var(--line); }
 .disclaimer { font-size: .9rem; text-align: center; margin-top: 8px; }
 
-.rating-row { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin: 14px 0 8px; }
+/* Two rows of five: 0–4 on top, 5–9 below, so every circle fits a phone and stays a big tap target. */
+.rating-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin: 16px 0 10px; justify-items: center; }
 .rating-dot {
-  aspect-ratio: 1; min-height: 44px; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer;
-  font: 700 1.1rem var(--font-kid); color: var(--ink); background: var(--card); padding: 0;
+  width: 100%; max-width: 64px; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--ink); cursor: pointer;
+  font: 700 1.3rem var(--font-kid); color: var(--ink); background: var(--card); padding: 0;
 }
 .rating-dot.low { background: var(--sage-soft); }
 .rating-dot.mid { background: var(--sun-soft); }
 .rating-dot.high { background: var(--clay-soft); }
 .rating-dot[aria-checked="true"] { outline: 3px solid var(--ink); outline-offset: 2px; transform: scale(1.08); }
-.rating-legend { display: flex; justify-content: space-between; font-size: .85rem; color: var(--ink-2); }
+.rating-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-size: .85rem; color: var(--ink-2); }
 .saved { margin-top: 12px; font-weight: 600; color: var(--sage); }
 .chart-wrap { position: relative; }
 .chart { width: 100%; height: auto; display: block; }

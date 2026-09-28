@@ -8,6 +8,7 @@ import { useChild } from './ChildLayout';
 
 const MAX_SEC = 150;
 const TYPES = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg'];
+/** Shown inside dir="ltr" elements so minutes stay before seconds. */
 const mmss = (s: number) => `${toArabicDigits(Math.floor(s / 60))}:${toArabicDigits(String(s % 60).padStart(2, '0'))}`;
 
 export function Recordings() {
@@ -81,7 +82,7 @@ export function Recordings() {
         {error && <p className="error" role="alert">{error}</p>}
         {!recording
           ? <button className="btn btn-primary" onClick={() => void start()}>ابدأ التسجيل</button>
-          : <button className="btn btn-primary" onClick={stop}>وقّف ({mmss(secs)})</button>}
+          : <button className="btn btn-primary" onClick={stop}>وقّف (<bdi dir="ltr">{mmss(secs)}</bdi>)</button>}
         <p className="muted small-note">التسجيل محتاج إنترنت عشان يتحفظ.</p>
       </section>
       <ul className="list">
@@ -89,7 +90,7 @@ export function Recordings() {
           <li key={r.id} className="panel rec">
             <div className="rec-head">
               <strong>{new Date(r.createdAt).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' })}</strong>
-              <span className="chip">{mmss(r.durationSec)}</span>
+              <span className="chip" dir="ltr">{mmss(r.durationSec)}</span>
             </div>
             <audio controls preload="none" src={`${base}/${r.id}/audio`} />
             <button className="btn btn-quiet" onClick={async () => {

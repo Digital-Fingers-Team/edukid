@@ -28,7 +28,7 @@ export function BubblesBoard({ getLevel, onFinish, goal = 25 }: { getLevel: () =
             onAnimationEnd={() => setBubbles((bs) => bs.filter((x) => x.id !== b.id))} />
         ))}
       </div>
-      <p className="board-hint">{done ? 'فقاعات كتير حلوة!' : 'انفخ بهدوء وبراحة، زي ما بتطفي شمعة من بعيد'}</p>
+      <p className="board-hint">{done ? 'فقاعات كتير حلوة!' : 'انفخ نفخة طويلة ناعمة، زي ما بتطفي شمعة من بعيد'}</p>
       {done && <button className="btn btn-primary" onClick={onFinish}>خلصنا</button>}
     </div>
   );

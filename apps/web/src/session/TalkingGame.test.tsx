@@ -47,4 +47,11 @@ describe('TalkingGame', () => {
     await waitFor(() => expect(onEnd).toHaveBeenCalled());
     expect(onEnd.mock.calls[0]![0]).toMatchObject({ levels: [1, 2], smooth: 1 });
   });
+
+  it('shows the timer left-to-right so minutes come before seconds', () => {
+    render(<TalkingGame child={child} onEnd={() => {}} />);
+    const timer = screen.getByLabelText('وقت الجلسة');
+    expect(timer.getAttribute('dir')).toBe('ltr');
+    expect(timer.textContent).toBe('٠:٠٠');
+  });
 });
