@@ -1,0 +1,7 @@
+[Unit]
+Description=Renew the EduKid TLS certificate
+
+[Service]
+Type=oneshot
+ExecStart=%h/edukid/deploy/renew-cert.sh
+Nice=15
