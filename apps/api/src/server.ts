@@ -7,5 +7,5 @@ import { buildApp } from './app.ts';
 const cfg = readConfig();
 mkdirSync(join(cfg.dataDir, 'recordings'), { recursive: true });
 const db = openDb(join(cfg.dataDir, 'edukid.sqlite'));
-const app = await buildApp({ db, dataDir: cfg.dataDir, cookieSecure: cfg.cookieSecure, logger: true });
+const app = await buildApp({ db, dataDir: cfg.dataDir, cookieSecure: cfg.cookieSecure, logger: true, webDir: cfg.webDir, booksDir: cfg.booksDir });
 await app.listen({ port: cfg.port, host: cfg.host });

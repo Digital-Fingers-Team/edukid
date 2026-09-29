@@ -22,9 +22,9 @@ export function VoiceGames() {
   );
 }
 
-const GAMES = {
+export const GAMES = {
   turtle: { title: 'السلحفاة', hint: 'السلحفاة بتمشي طول ما صوتك شغال وناعم. يلا نساعدها توصل للخس!', Board: TurtleBoard },
-  balloon: { title: 'البالونة', hint: 'ابدأ صوتك بالراحة خالص، والبالونة تكبر تكبر…', Board: BalloonBoard },
+  balloon: { title: 'البالونة', hint: 'ابدأ صوتك ناعم خالص، زي الهمسة، والبالونة تكبر تكبر…', Board: BalloonBoard },
   snake: { title: 'الثعبان', hint: 'مطّ أول صوت في الكلمة، والثعبان يطوّل!', Board: SnakeBoard },
   bubbles: { title: 'الفقاعات', hint: 'انفخ نفخة طويلة وهادية، وشوف الفقاعات بتطلع', Board: BubblesBoard },
 } as const;

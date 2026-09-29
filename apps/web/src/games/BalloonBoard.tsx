@@ -24,7 +24,7 @@ export function BalloonBoard({ getLevel, onFinish }: { getLevel: () => number; o
       <div className={`balloon-stage${full ? ' fly' : ''}`}>
         <Balloon size={s.size} color={COLORS[turn % COLORS.length]!} wobble={s.wobbleMs > 0} />
       </div>
-      <p className="board-hint">{full ? 'البالونة طارت!' : 'ابدأ الصوت بهدوء خالص: «آآآه»، والبالونة تكبر'}</p>
+      <p className="board-hint">{full ? 'البالونة طارت!' : 'ابدأ الصوت ناعم خالص: «آآآه»، والبالونة تكبر'}</p>
       {full && <button className="btn btn-primary" onClick={next}>{turn + 1 >= TURNS ? 'خلصنا' : 'بالونة كمان'}</button>}
       <Dots n={TURNS} at={turn} />
     </div>

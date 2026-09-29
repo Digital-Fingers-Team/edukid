@@ -41,12 +41,10 @@ export async function addSticker(childId: string, stickerId: string): Promise<bo
 }
 
 export async function updateChild(id: string, patch: Partial<ChildEditable>): Promise<void> {
+  if (!(await db.children.get(id))) return;
   await db.children.update(id, { ...patch, updatedAt: Date.now() });
-  const c = await db.children.get(id);
-  if (!c) return;
-  const body: ChildEditable = { name: c.name, kg: c.kg, avatar: c.avatar, stage: c.stage,
-    stageSince: c.stageSince, level: c.level, recordingConsent: c.recordingConsent };
-  await enqueue(db, { method: 'PATCH', path: base(id), body });
+  // Only the changed fields: a stale copy on this device must not overwrite other settings (spec §5.1).
+  await enqueue(db, { method: 'PATCH', path: base(id), body: patch });
   void kick();
 }
 

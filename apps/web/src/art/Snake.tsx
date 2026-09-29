@@ -5,7 +5,7 @@ export function Snake({ length }: { length: number }) {
   const headY = 40 + Math.sin(L / 20) * 12;
   const body = `M${pts.join(' L')}`;
   return (
-    <svg viewBox="0 0 340 80" width="100%" aria-hidden="true" style={{ transform: 'scaleX(-1)' }}>
+    <svg viewBox="-20 0 360 80" width="100%" aria-hidden="true" style={{ transform: 'scaleX(-1)' }}>
       <path d={body} fill="none" stroke="var(--ink)" strokeWidth="26" strokeLinecap="round" strokeLinejoin="round" />
       <path d={body} fill="none" stroke="#E3AE3C" strokeWidth="18" strokeLinecap="round" strokeLinejoin="round" />
       <path d={body} fill="none" stroke="#C98F22" strokeWidth="4" strokeDasharray="2 14" strokeLinecap="round" />

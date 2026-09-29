@@ -17,18 +17,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthState>({ status: 'loading' });
 
   useEffect(() => {
+    let alive = true; // the check is async; ignore its result if the app has unmounted meanwhile
     setUnauthorizedHandler(() => setState({ status: 'guest' }));
     (async () => {
       try {
         const me = await api<Me>('GET', '/api/me');
         await setMeta('me', me);
-        setState({ status: 'parent', me });
+        if (alive) setState({ status: 'parent', me });
       } catch (err) {
         const cached = await getMeta<Me>('me');
-        if (err instanceof NetworkError && cached) setState({ status: 'parent', me: cached });
+        if (!alive) return;
+        const serverDown = err instanceof NetworkError || (err instanceof ApiError && err.status >= 500);
+        if (serverDown && cached) setState({ status: 'parent', me: cached });
         else setState({ status: 'guest' });
       }
     })();
+    return () => { alive = false; };
   }, []);
 
   const signIn = useCallback(async (path: string, email: string, password: string) => {

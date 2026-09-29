@@ -25,4 +25,14 @@ describe('Welcome', () => {
     fireEvent.click(screen.getByRole('button', { name: 'دخول' }));
     expect(await screen.findByText('الإيميل أو كلمة السر مش مظبوطين.')).toBeTruthy();
   });
+  it('a server outage at startup keeps a signed-in parent signed in', async () => {
+    const { setMeta } = await import('../store/db');
+    await setMeta('me', { id: 'p1', email: 'mama@example.com' });
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('bad gateway', { status: 502 })));
+    const { useAuth } = await import('../auth/AuthProvider');
+    let status = '';
+    function Probe() { status = useAuth().state.status; return null; }
+    render(<MemoryRouter><AuthProvider><Probe /></AuthProvider></MemoryRouter>);
+    await vi.waitFor(() => expect(status).toBe('parent'));
+  });
 });
