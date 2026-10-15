@@ -22,7 +22,7 @@
   --radius-sm: 12px;
   --radius: 20px;
   --radius-lg: 28px;
-  --font-kid: 'Baloo Bhaijaan 2', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-kid: 'IBM Plex Sans Arabic', system-ui, sans-serif;
   --font-ui: 'IBM Plex Sans Arabic', system-ui, sans-serif;
   --ease: cubic-bezier(.3, .7, .3, 1);
   color-scheme: dark;

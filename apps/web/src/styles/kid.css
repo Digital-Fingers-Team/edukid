@@ -55,7 +55,7 @@
 .children-title { text-align: center; margin: 24px 0 20px; }
 .children-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
 .add-tile { background: transparent; border-style: dashed; box-shadow: none; }
-.plus-mark { font: 800 2.6rem/1 var(--font-kid); color: var(--ink-2); }
+.plus-mark { font: 700 2.6rem/1 var(--font-kid); color: var(--ink-2); }
 .add-child { margin-top: 20px; }
 .avatar-pick { display: flex; flex-wrap: wrap; gap: 10px; }
 .avatar-pick button { border: 2px solid var(--line); border-radius: 50%; padding: 6px; background: var(--card); cursor: pointer; }

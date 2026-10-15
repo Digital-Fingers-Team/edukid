@@ -17,7 +17,7 @@
 .choice.yay { animation: pop .5s var(--ease); }
 .choice.shake { animation: nope .4s ease-in-out; }
 @keyframes nope { 0%, 100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-.face-text { font: 800 2.6rem/1 var(--font-kid); }
+.face-text { font: 700 2.6rem/1 var(--font-kid); }
 .face-text.en { font-size: 2rem; direction: ltr; }
 .swatch { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--ink); }
 .dot-group { display: flex; flex-wrap: wrap; gap: 6px; max-width: 110px; justify-content: center; }
@@ -30,7 +30,7 @@
   background: var(--paper-2); border-radius: var(--radius-lg); width: 100%; min-height: 120px;
 }
 .count-field .taken { opacity: .3; filter: grayscale(1); }
-.count-field .plus, .math-expr { font: 800 2.2rem/1 var(--font-kid); }
+.count-field .plus, .math-expr { font: 700 2.2rem/1 var(--font-kid); }
 .math-expr { margin: 0; }
 .trace-pad {
   width: min(100%, 320px); aspect-ratio: 1; touch-action: none; background: var(--card);
