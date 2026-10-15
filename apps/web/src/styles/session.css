@@ -29,4 +29,4 @@
 .session-intro ul { margin-bottom: 18px; }
 .finish { display: grid; gap: 4px; }
 .row { display: flex; gap: 10px; flex-wrap: wrap; }
-@media (prefers-color-scheme: dark) { .dock-smooth { background: var(--sage); color: #1E1B18; } }
+.dock-smooth { background: var(--sage); color: #1E1B18; }

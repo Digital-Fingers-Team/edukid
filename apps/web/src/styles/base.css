@@ -24,7 +24,7 @@ a { color: inherit; }
 }
 .btn:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
 .btn:disabled { opacity: .5; cursor: default; }
-.btn-primary { background: var(--clay); color: var(--on-clay); }
+.btn-primary { background: var(--gradient-cta); color: var(--on-clay); border-color: transparent; }
 .btn-block { width: 100%; }
 .btn-quiet { background: transparent; border-color: transparent; box-shadow: none; text-decoration: underline; text-underline-offset: 4px; }
 .btn-quiet:active { transform: none; }
@@ -39,6 +39,7 @@ a { color: inherit; }
 .field { display: grid; gap: .35rem; margin-bottom: 1rem; }
 .field label { font-weight: 600; }
 .field input, .field select, .field textarea {
+  width: 100%; min-width: 0;
   font: inherit; color: inherit; background: var(--card);
   border: 2px solid var(--line); border-radius: var(--radius-sm); padding: .7rem .9rem; min-height: 48px;
 }
