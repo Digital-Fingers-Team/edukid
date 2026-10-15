@@ -4,10 +4,10 @@
   display: grid; justify-items: center; gap: 8px; width: 100%; padding: 22px 18px; text-align: center;
   background: var(--card); border: 2.5px solid var(--ink); border-radius: var(--radius-lg); box-shadow: 0 4px 0 var(--ink);
 }
-.talk-card p { font: 700 2rem/1.35 var(--font-kid); margin: 0; }
+.talk-card p { font: 800 2rem/1.35 var(--font-kid); margin: 0; }
 .prompt-card p { font-size: 1.5rem; }
 .talk-nav { display: flex; gap: 16px; }
-.talk-nav .round-btn { font: 700 1.6rem/1 var(--font-kid); }
+.talk-nav .round-btn { font: 800 1.6rem/1 var(--font-kid); }
 
 .parent-dock {
   position: fixed; inset-inline: 0; bottom: 0; z-index: 5;

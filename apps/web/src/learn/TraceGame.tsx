@@ -18,35 +18,28 @@ export function TraceGame({ items, onDone }: GameProps) {
 
   useEffect(() => {
     speak(item.say, item.lang);
-    let live = true;
-    const draw = () => {
-      if (!live) return;
-      const off = document.createElement('canvas');
-      off.width = off.height = COLS;
-      const octx = off.getContext('2d');
-      const ctx = canvas.current?.getContext('2d');
-      if (!octx || !ctx) return;
-      const font = (px: number) => `700 ${px}px "IBM Plex Sans Arabic", sans-serif`;
-      octx.font = font(COLS * 0.8);
-      octx.textAlign = 'center';
-      octx.textBaseline = 'middle';
-      octx.fillText(glyph, COLS / 2, COLS / 2);
-      cells.current = glyphCells(octx.getImageData(0, 0, COLS, COLS).data, COLS);
-      touched.current = new Set();
-      ctx.clearRect(0, 0, SIZE, SIZE);
-      ctx.font = font(SIZE * 0.8);
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--line');
-      ctx.fillText(glyph, SIZE / 2, SIZE / 2);
-      ctx.lineWidth = 18;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--clay');
-    };
-    // Canvas text does not wait for web fonts: load Plex first so the guide glyph and its trace cells match.
-    (document.fonts?.load('700 24px "IBM Plex Sans Arabic"', glyph) ?? Promise.resolve()).then(draw, draw);
-    return () => { live = false; };
+    const off = document.createElement('canvas');
+    off.width = off.height = COLS;
+    const octx = off.getContext('2d');
+    const ctx = canvas.current?.getContext('2d');
+    if (!octx || !ctx) return;
+    const font = (px: number) => `800 ${px}px "Baloo Bhaijaan 2", sans-serif`;
+    octx.font = font(COLS * 0.8);
+    octx.textAlign = 'center';
+    octx.textBaseline = 'middle';
+    octx.fillText(glyph, COLS / 2, COLS / 2);
+    cells.current = glyphCells(octx.getImageData(0, 0, COLS, COLS).data, COLS);
+    touched.current = new Set();
+    ctx.clearRect(0, 0, SIZE, SIZE);
+    ctx.font = font(SIZE * 0.8);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--line');
+    ctx.fillText(glyph, SIZE / 2, SIZE / 2);
+    ctx.lineWidth = 18;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--clay');
   }, [glyph, item.say, item.lang]);
 
   function point(e: PointerEvent<HTMLCanvasElement>) {
